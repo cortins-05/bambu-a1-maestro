@@ -1,0 +1,3 @@
+-r requirements.txt
+# Optional STEP/STP import; wheel availability depends on OS/Python version.
+cascadio>=0.0.14,<1

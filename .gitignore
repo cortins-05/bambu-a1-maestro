@@ -1,0 +1,12 @@
+node_modules/
+*.tgz
+__pycache__/
+*.py[cod]
+.venv/
+_analisis_a1/
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+coverage/

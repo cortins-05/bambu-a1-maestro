@@ -1,0 +1,12 @@
+Bambu A1 Maestro is an independent community project, not affiliated with
+or endorsed by Bambu Lab, Google, OpenAI or Anthropic.
+
+Bambu Studio and its profiles are not bundled. The slicing helper reads the
+user's installed profiles and invokes the installed Bambu Studio executable.
+references/perfiles_oficiales_a1.md documents observed configuration values;
+the installed profiles remain the source of truth.
+
+NotebookLM / Gemini Notebook integration uses the separately installed
+third-party project https://github.com/jacob-bd/gemini-notebook-mcp-cli.
+That CLI, its skill, and all Python dependencies retain their own licenses.
+No notebooks, account identifiers, credentials or models are distributed.
