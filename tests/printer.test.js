@@ -6,7 +6,7 @@ import { join, resolve } from 'node:path';
 const ok = { host: '192.168.1.50', serial: '0309AB123456789', token: '12345678', model: 'a1' };
 
 test('buildServer genera la entrada MCP con el entorno del usuario', () => {
-  const server = buildServer(ok);
+  const server = buildServer(ok, 'linux');
   assert.deepEqual(server.args, ['-y', 'bambu-printer-mcp']);
   assert.equal(server.env.BAMBU_TOKEN, '12345678');
   assert.equal(server.env.BAMBU_MODEL, 'a1');
@@ -20,7 +20,7 @@ test('buildServer rechaza datos inválidos', () => {
 });
 
 test('codexToml produce una sección TOML válida', () => {
-  const toml = codexToml(buildServer(ok));
+  const toml = codexToml(buildServer(ok, 'linux'));
   assert.match(toml, /^\[mcp_servers\.bambu-printer\]/);
   assert.match(toml, /args = \["-y", "bambu-printer-mcp"\]/);
   assert.match(toml, /PRINTER_HOST = "192\.168\.1\.50"/);
@@ -29,4 +29,10 @@ test('codexToml produce una sección TOML válida', () => {
 test('codexConfigPath respeta CODEX_HOME', () => {
   assert.equal(codexConfigPath({ CODEX_HOME: '/c/codex' }, '/h'), join(resolve('/c/codex'), 'config.toml'));
   assert.equal(codexConfigPath({}, '/h'), join('/h', '.codex', 'config.toml'));
+});
+
+test('en Windows se lanza con cmd /c npx', () => {
+  const server = buildServer(ok, 'win32');
+  assert.equal(server.command, 'cmd');
+  assert.deepEqual(server.args, ['/c', 'npx', '-y', 'bambu-printer-mcp']);
 });

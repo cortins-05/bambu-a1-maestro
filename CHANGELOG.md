@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 — 2026-11-01
+
+- printer: en Windows el MCP se lanza con `cmd /c npx` y `claude mcp add-json` se ejecuta sin shell (antes fallaba con "Invalid configuration").
+
 ## 1.1.0 — 2026-11-01
 
 - Proyecto renombrado a 3D-maestro (paquete, comando, carpeta de skill y repositorio). Si tenías `bambu-a1-maestro` instalada, borra esa carpeta y reinstala.

@@ -18,13 +18,13 @@ Con Node.js 22+ (incluye npm/npx) y Git instalados:
 
 ```bash
 # Codex · global de usuario (recomendado)
-npx --yes github:cortins-05/3D-maestro#v1.1.0 install --global --agent codex
+npx --yes github:cortins-05/3D-maestro#v1.1.1 install --global --agent codex
 
 # Claude Code
-npx --yes github:cortins-05/3D-maestro#v1.1.0 install --global --agent claude-code
+npx --yes github:cortins-05/3D-maestro#v1.1.1 install --global --agent claude-code
 
 # Cursor
-npx --yes github:cortins-05/3D-maestro#v1.1.0 install --global --agent cursor
+npx --yes github:cortins-05/3D-maestro#v1.1.1 install --global --agent cursor
 ```
 
 Se descarga una versión etiquetada desde GitHub. **No requiere una cuenta de npm ni un paquete publicado en su registro.** El instalador no tiene dependencias npm ni scripts `postinstall`; copia la skill, referencias, scripts Python y archivos de requisitos. La instalación no configura las herramientas externas ni inicia sesión en Google. Completa los requisitos siguientes y vuelve a abrir el agente.
@@ -149,10 +149,10 @@ No se cambia tu perfil por defecto. Si hay títulos duplicados, el agente pedir�
 ### 4. Comprueba tu entorno
 
 ```bash
-npx --yes github:cortins-05/3D-maestro#v1.1.0 doctor --agent codex
+npx --yes github:cortins-05/3D-maestro#v1.1.1 doctor --agent codex
 
 # Comprobar también sesión y acceso al cuaderno (usa Internet):
-npx --yes github:cortins-05/3D-maestro#v1.1.0 doctor --agent codex --check-auth --notebook TU-UUID
+npx --yes github:cortins-05/3D-maestro#v1.1.1 doctor --agent codex --check-auth --notebook TU-UUID
 ```
 
 `doctor` admite `--python "/ruta/al/python"`, `--profile nombre` y `--json`. Devuelve código 1 si encuentra requisitos pendientes. Detectar la skill auxiliar en disco no garantiza que el agente la tenga cargada; comprobar acceso al cuaderno no evalúa la calidad de sus fuentes. Sin `--check-auth` no consulta Google ni verifica sesión/cuaderno.
@@ -204,8 +204,8 @@ Los scripts generan el análisis y los resúmenes de laminado. **El agente**, si
 3. Registra el servidor (pregunta lo que falte):
 
 ```bash
-npx --yes github:cortins-05/3D-maestro#v1.1.0 printer --agent claude-code
-npx --yes github:cortins-05/3D-maestro#v1.1.0 printer --agent codex --host 192.168.1.50 --serial 0309XXXXXXXXXXX --token 12345678 --model a1
+npx --yes github:cortins-05/3D-maestro#v1.1.1 printer --agent claude-code
+npx --yes github:cortins-05/3D-maestro#v1.1.1 printer --agent codex --host 192.168.1.50 --serial 0309XXXXXXXXXXX --token 12345678 --model a1
 ```
 
 Agentes: `claude-code` (usa `claude mcp add-json --scope user`), `codex` (`~/.codex/config.toml`, respeta `CODEX_HOME`) y `cursor` (`~/.cursor/mcp.json`). `--dry-run` muestra el destino sin escribir. Reinicia el agente y pide, por ejemplo, «imprime el 3MF laminado».
@@ -216,16 +216,16 @@ Seguridad: el código de acceso queda en texto plano en la configuración local 
 
 ```bash
 # Previsualizar destino sin escribir:
-npx --yes github:cortins-05/3D-maestro#v1.1.0 install --global --agent codex --dry-run
+npx --yes github:cortins-05/3D-maestro#v1.1.1 install --global --agent codex --dry-run
 
 # Actualizar/reinstalar, conservando la carpeta anterior como .backup-<fecha>-<pid>:
-npx --yes github:cortins-05/3D-maestro#v1.1.0 install --global --agent codex --force
+npx --yes github:cortins-05/3D-maestro#v1.1.1 install --global --agent codex --force
 
 # Solo en el proyecto actual:
-npx --yes github:cortins-05/3D-maestro#v1.1.0 install --project --agent codex
+npx --yes github:cortins-05/3D-maestro#v1.1.1 install --project --agent codex
 
 # Otro directorio de skills:
-npx --yes github:cortins-05/3D-maestro#v1.1.0 install --dir "/ruta/a/skills"
+npx --yes github:cortins-05/3D-maestro#v1.1.1 install --dir "/ruta/a/skills"
 ```
 
 Para una versión posterior, cambia la etiqueta por la indicada en [Releases](https://github.com/cortins-05/3D-maestro/releases). Sin `--force`, se rechaza una instalación existente. El instalador no sigue destinos con enlaces simbólicos: usa su ruta real mediante `--dir`. Las copias conservan tus modificaciones locales; no se fusionan automáticamente.

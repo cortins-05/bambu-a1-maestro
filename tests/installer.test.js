@@ -74,5 +74,5 @@ test('CLI reports invalid options and supports help/version without side effects
   assert.match(help.stdout, /--global/);
   const version = spawnSync(process.execPath, [cli, '--version'], { encoding: 'utf8' });
   assert.equal(version.status, 0);
-  assert.equal(version.stdout.trim(), '1.1.0');
+  assert.equal(version.stdout.trim(), '1.1.1');
 });

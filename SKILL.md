@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requiere un agente con terminal y lectura de imágenes, Python 3.11+ y las dependencias de requirements.txt. Bambu Studio y sus perfiles BBL para validar; nlm autenticado y su skill para revisión NotebookLM. Windows, macOS o Linux.
 metadata:
   author: cortins-05
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Maestro Bambu Lab A1
