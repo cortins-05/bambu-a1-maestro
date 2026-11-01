@@ -1,7 +1,7 @@
-# Bambu A1 Maestro
+# 3D-maestro
 
-[![CI](https://github.com/cortins-05/bambu-a1-maestro/actions/workflows/ci.yml/badge.svg)](https://github.com/cortins-05/bambu-a1-maestro/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/cortins-05/bambu-a1-maestro)](https://github.com/cortins-05/bambu-a1-maestro/releases)
+[![CI](https://github.com/cortins-05/3D-maestro/actions/workflows/ci.yml/badge.svg)](https://github.com/cortins-05/3D-maestro/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/cortins-05/3D-maestro)](https://github.com/cortins-05/3D-maestro/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 **De un modelo 3D a una configuración de impresión razonada para tu Bambu Lab A1.**
@@ -18,13 +18,13 @@ Con Node.js 22+ (incluye npm/npx) y Git instalados:
 
 ```bash
 # Codex · global de usuario (recomendado)
-npx --yes github:cortins-05/bambu-a1-maestro#v1.0.0 install --global --agent codex
+npx --yes github:cortins-05/3D-maestro#v1.1.0 install --global --agent codex
 
 # Claude Code
-npx --yes github:cortins-05/bambu-a1-maestro#v1.0.0 install --global --agent claude-code
+npx --yes github:cortins-05/3D-maestro#v1.1.0 install --global --agent claude-code
 
 # Cursor
-npx --yes github:cortins-05/bambu-a1-maestro#v1.0.0 install --global --agent cursor
+npx --yes github:cortins-05/3D-maestro#v1.1.0 install --global --agent cursor
 ```
 
 Se descarga una versión etiquetada desde GitHub. **No requiere una cuenta de npm ni un paquete publicado en su registro.** El instalador no tiene dependencias npm ni scripts `postinstall`; copia la skill, referencias, scripts Python y archivos de requisitos. La instalación no configura las herramientas externas ni inicia sesión en Google. Completa los requisitos siguientes y vuelve a abrir el agente.
@@ -36,7 +36,7 @@ Se descarga una versión etiquetada desde GitHub. **No requiere una cuenta de np
 | `cursor` | `~/.cursor/skills` | `.cursor/skills` |
 | `agents` | `~/.agents/skills` | `.agents/skills` |
 
-Siempre añade la subcarpeta `bambu-a1-maestro`. Usa `--dir "/ruta/a/skills"` para otro agente que admita `SKILL.md`. La compatibilidad exige acceso a terminal, ejecución de Python y lectura de imágenes; instalar archivos no concede esos permisos al agente.
+Siempre añade la subcarpeta `3d-maestro`. Usa `--dir "/ruta/a/skills"` para otro agente que admita `SKILL.md`. La compatibilidad exige acceso a terminal, ejecución de Python y lectura de imágenes; instalar archivos no concede esos permisos al agente.
 
 ## Requisitos
 
@@ -62,17 +62,17 @@ Recomendamos un entorno virtual. Ejemplo para Codex global con su ruta predeterm
 **Windows / PowerShell**
 
 ```powershell
-python -m venv "$env:USERPROFILE/.venvs/bambu-a1-maestro"
-& "$env:USERPROFILE/.venvs/bambu-a1-maestro/Scripts/Activate.ps1"
-python -m pip install -r "$env:USERPROFILE/.codex/skills/bambu-a1-maestro/requirements.txt"
+python -m venv "$env:USERPROFILE/.venvs/3d-maestro"
+& "$env:USERPROFILE/.venvs/3d-maestro/Scripts/Activate.ps1"
+python -m pip install -r "$env:USERPROFILE/.codex/skills/3d-maestro/requirements.txt"
 ```
 
 **macOS / Linux**
 
 ```bash
-python3 -m venv ~/.venvs/bambu-a1-maestro
-source ~/.venvs/bambu-a1-maestro/bin/activate
-python -m pip install -r ~/.codex/skills/bambu-a1-maestro/requirements.txt
+python3 -m venv ~/.venvs/3d-maestro
+source ~/.venvs/3d-maestro/bin/activate
+python -m pip install -r ~/.codex/skills/3d-maestro/requirements.txt
 ```
 
 Cambia la ruta por la que imprime el instalador si usas otro agente o `CODEX_HOME`. Abre el agente desde ese entorno, o indícale la ruta absoluta de su intérprete Python. Para STEP/STP instala `requirements-step.txt` en el mismo entorno; la disponibilidad de las ruedas de `cascadio` depende del sistema y versión de Python. Si falla, exporta el modelo como STL o 3MF.
@@ -149,19 +149,19 @@ No se cambia tu perfil por defecto. Si hay títulos duplicados, el agente pedir�
 ### 4. Comprueba tu entorno
 
 ```bash
-npx --yes github:cortins-05/bambu-a1-maestro#v1.0.0 doctor --agent codex
+npx --yes github:cortins-05/3D-maestro#v1.1.0 doctor --agent codex
 
 # Comprobar también sesión y acceso al cuaderno (usa Internet):
-npx --yes github:cortins-05/bambu-a1-maestro#v1.0.0 doctor --agent codex --check-auth --notebook TU-UUID
+npx --yes github:cortins-05/3D-maestro#v1.1.0 doctor --agent codex --check-auth --notebook TU-UUID
 ```
 
 `doctor` admite `--python "/ruta/al/python"`, `--profile nombre` y `--json`. Devuelve código 1 si encuentra requisitos pendientes. Detectar la skill auxiliar en disco no garantiza que el agente la tenga cargada; comprobar acceso al cuaderno no evalúa la calidad de sus fuentes. Sin `--check-auth` no consulta Google ni verifica sesión/cuaderno.
 
 ## Cómo usarla
 
-En Codex puedes invocarla con `$bambu-a1-maestro`; otros agentes también pueden activarla según la descripción de la skill. Dale una **ruta explícita** a un archivo o carpeta:
+En Codex puedes invocarla con `$3d-maestro`; otros agentes también pueden activarla según la descripción de la skill. Dale una **ruta explícita** a un archivo o carpeta:
 
-> Usa bambu-a1-maestro para analizar `C:/Modelos/soporte_monitor.stl`. Tengo una A1 con boquilla 0.4, PLA Basic y Textured PEI. La pieza soporta carga; prioriza resistencia y conserva la precisión de los agujeros.
+> Usa 3d-maestro para analizar `C:/Modelos/soporte_monitor.stl`. Tengo una A1 con boquilla 0.4, PLA Basic y Textured PEI. La pieza soporta carga; prioriza resistencia y conserva la precisión de los agujeros.
 
 > Analiza `/home/ana/modelos/carcasa/`. Imprimiré en PETG, sin AMS lite. Compara orientaciones y, si NotebookLM recomienda mejoras, relamina para medir el cambio.
 
@@ -195,25 +195,42 @@ _analisis_a1/
 
 Los scripts generan el análisis y los resúmenes de laminado. **El agente**, siguiendo `SKILL.md`, realiza la consulta y escribe la recomendación final; no es un servicio automático de impresión. Consulta [docs/usage.md](docs/usage.md) para ejecutar los scripts directamente y entender sus códigos de salida.
 
+## Imprimir desde el agente (impresora por LAN)
+
+3D-maestro puede registrar un servidor MCP comunitario ([`bambu-printer-mcp`](https://github.com/DMontgomery40/bambu-printer-mcp), GPL-2.0, no se redistribuye aquí) para que Claude Code, Codex o Cursor consulten el estado, suban el 3MF y lancen la impresión. Cada usuario usa su propia impresora.
+
+1. En la impresora activa **Modo solo LAN** y **Modo desarrollador** (Ajustes > Red). Desactiva la nube: activar/desactivar estos modos puede regenerar el código de acceso.
+2. Anota la IP, el número de serie y el código de acceso LAN.
+3. Registra el servidor (pregunta lo que falte):
+
+```bash
+npx --yes github:cortins-05/3D-maestro#v1.1.0 printer --agent claude-code
+npx --yes github:cortins-05/3D-maestro#v1.1.0 printer --agent codex --host 192.168.1.50 --serial 0309XXXXXXXXXXX --token 12345678 --model a1
+```
+
+Agentes: `claude-code` (usa `claude mcp add-json --scope user`), `codex` (`~/.codex/config.toml`, respeta `CODEX_HOME`) y `cursor` (`~/.cursor/mcp.json`). `--dry-run` muestra el destino sin escribir. Reinicia el agente y pide, por ejemplo, «imprime el 3MF laminado».
+
+Seguridad: el código de acceso queda en texto plano en la configuración local de tu agente (no la subas a Git). El tráfico es LAN con certificado autofirmado sin verificar: úsalo solo en una red de confianza. La skill pide confirmación antes de iniciar o cancelar una impresión, pero verifica siempre la máquina; una respuesta correcta del MCP no garantiza que la pieza se esté imprimiendo.
+
 ## Actualizar, personalizar y desinstalar
 
 ```bash
 # Previsualizar destino sin escribir:
-npx --yes github:cortins-05/bambu-a1-maestro#v1.0.0 install --global --agent codex --dry-run
+npx --yes github:cortins-05/3D-maestro#v1.1.0 install --global --agent codex --dry-run
 
 # Actualizar/reinstalar, conservando la carpeta anterior como .backup-<fecha>-<pid>:
-npx --yes github:cortins-05/bambu-a1-maestro#v1.0.0 install --global --agent codex --force
+npx --yes github:cortins-05/3D-maestro#v1.1.0 install --global --agent codex --force
 
 # Solo en el proyecto actual:
-npx --yes github:cortins-05/bambu-a1-maestro#v1.0.0 install --project --agent codex
+npx --yes github:cortins-05/3D-maestro#v1.1.0 install --project --agent codex
 
 # Otro directorio de skills:
-npx --yes github:cortins-05/bambu-a1-maestro#v1.0.0 install --dir "/ruta/a/skills"
+npx --yes github:cortins-05/3D-maestro#v1.1.0 install --dir "/ruta/a/skills"
 ```
 
-Para una versión posterior, cambia la etiqueta por la indicada en [Releases](https://github.com/cortins-05/bambu-a1-maestro/releases). Sin `--force`, se rechaza una instalación existente. El instalador no sigue destinos con enlaces simbólicos: usa su ruta real mediante `--dir`. Las copias conservan tus modificaciones locales; no se fusionan automáticamente.
+Para una versión posterior, cambia la etiqueta por la indicada en [Releases](https://github.com/cortins-05/3D-maestro/releases). Sin `--force`, se rechaza una instalación existente. El instalador no sigue destinos con enlaces simbólicos: usa su ruta real mediante `--dir`. Las copias conservan tus modificaciones locales; no se fusionan automáticamente.
 
-Para desinstalar, elimina únicamente la carpeta `bambu-a1-maestro` del destino mostrado por el instalador. Los informes junto a tus modelos, entornos Python, copias anteriores y herramientas externas se conservan. Para restaurar una copia, aparta la instalación actual y devuelve a la copia su nombre original.
+Para desinstalar, elimina únicamente la carpeta `3d-maestro` del destino mostrado por el instalador. Los informes junto a tus modelos, entornos Python, copias anteriores y herramientas externas se conservan. Para restaurar una copia, aparta la instalación actual y devuelve a la copia su nombre original.
 
 ## Alcance y límites
 
@@ -227,8 +244,8 @@ Para desinstalar, elimina únicamente la carpeta `bambu-a1-maestro` del destino 
 ## Desarrollo y contribuciones
 
 ```bash
-git clone https://github.com/cortins-05/bambu-a1-maestro.git
-cd bambu-a1-maestro
+git clone https://github.com/cortins-05/3D-maestro.git
+cd 3d-maestro
 npm ci
 npm test
 python -m pip install -r requirements.txt

@@ -1,19 +1,19 @@
 {
-  "name": "bambu-a1-maestro",
-  "version": "1.0.0",
+  "name": "3d-maestro",
+  "version": "1.1.0",
   "description": "An AI agent skill for Bambu Lab A1: geometry, real slicing and source-grounded NotebookLM review.",
   "type": "module",
-  "bin": { "bambu-a1-maestro": "bin/cli.js" },
+  "bin": { "3d-maestro": "bin/cli.js" },
   "files": ["bin/", "lib/", "scripts/*.py", "references/*.md", "docs/", "SKILL.md", "requirements*.txt", "README.md", "LICENSE", "NOTICE", "CHANGELOG.md", "CONTRIBUTING.md", "SECURITY.md"],
   "engines": { "node": ">=22" },
   "scripts": {
     "test": "node --test",
     "test:python": "python -m unittest discover -s tests -p test_*.py",
-    "check": "node --check bin/cli.js && node --check lib/installer.js && node --check lib/doctor.js"
+    "check": "node --check bin/cli.js && node --check lib/installer.js && node --check lib/doctor.js && node --check lib/printer.js"
   },
-  "repository": { "type": "git", "url": "git+https://github.com/cortins-05/bambu-a1-maestro.git" },
-  "homepage": "https://github.com/cortins-05/bambu-a1-maestro#readme",
-  "bugs": { "url": "https://github.com/cortins-05/bambu-a1-maestro/issues" },
+  "repository": { "type": "git", "url": "git+https://github.com/cortins-05/3D-maestro.git" },
+  "homepage": "https://github.com/cortins-05/3D-maestro#readme",
+  "bugs": { "url": "https://github.com/cortins-05/3D-maestro/issues" },
   "author": "cortins-05",
   "license": "MIT",
   "keywords": ["agent-skills", "bambu-lab", "bambu-a1", "3d-printing", "codex", "claude-code", "notebooklm", "stl", "slicer"]

@@ -13,9 +13,9 @@ async function workspace(t) {
 }
 
 test('global, project, custom and CODEX_HOME destinations', () => {
-  assert.equal(destination({}, {}, '/users/test', '/project'), join('/users/test', '.codex', 'skills', 'bambu-a1-maestro'));
-  assert.equal(destination({ global: true }, { CODEX_HOME: '/custom/codex' }), join(resolve('/custom/codex'), 'skills', 'bambu-a1-maestro'));
-  assert.equal(destination({ project: true, agent: 'claude-code' }, {}, '/users/test', '/project'), join('/project', '.claude', 'skills', 'bambu-a1-maestro'));
+  assert.equal(destination({}, {}, '/users/test', '/project'), join('/users/test', '.codex', 'skills', '3d-maestro'));
+  assert.equal(destination({ global: true }, { CODEX_HOME: '/custom/codex' }), join(resolve('/custom/codex'), 'skills', '3d-maestro'));
+  assert.equal(destination({ project: true, agent: 'claude-code' }, {}, '/users/test', '/project'), join('/project', '.claude', 'skills', '3d-maestro'));
   assert.throws(() => destination({ global: true, project: true }), /excluyentes/);
   assert.throws(() => destination({ agent: '../escape' }), /desconocido/);
   assert.throws(() => destination({ dir: 'skills', agent: 'codex' }), /no lo combines/);
@@ -48,7 +48,7 @@ test('existing installation is protected, force preserves all local changes', as
   const next = await install({ dir, force: true });
   assert.equal(await readFile(join(next.backup, 'SKILL.md'), 'utf8'), 'custom skill');
   assert.equal(await readFile(join(next.backup, 'my-local-notes.md'), 'utf8'), 'personal notes');
-  assert.match(await readFile(join(next.target, 'SKILL.md'), 'utf8'), /name: bambu-a1-maestro/);
+  assert.match(await readFile(join(next.target, 'SKILL.md'), 'utf8'), /name: 3d-maestro/);
   await assert.rejects(access(join(next.target, 'my-local-notes.md')));
 });
 
@@ -74,5 +74,5 @@ test('CLI reports invalid options and supports help/version without side effects
   assert.match(help.stdout, /--global/);
   const version = spawnSync(process.execPath, [cli, '--version'], { encoding: 'utf8' });
   assert.equal(version.status, 0);
-  assert.equal(version.stdout.trim(), '1.0.0');
+  assert.equal(version.stdout.trim(), '1.1.0');
 });

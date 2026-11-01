@@ -1,11 +1,11 @@
 ---
-name: bambu-a1-maestro
+name: 3d-maestro
 description: Maestro experto en impresión 3D con Bambu Lab A1. Analiza modelos 3D (STL, 3MF, OBJ, STEP…) de un archivo o carpeta, los "ve" con renders y análisis geométrico, lamina de verdad con Bambu Studio CLI y entrega la configuración óptima (orientación, placa, material, perfil, soportes, brim y cada ajuste con su porqué). Úsala siempre que el usuario pase una ruta con modelos para imprimir, pregunte cómo imprimir una pieza, qué ajustes/soportes/orientación usar, o mencione Bambu Studio, A1, laminar, slicer, STL o 3MF — aunque no diga "A1" explícitamente si su impresora es la A1.
 license: MIT
 compatibility: Requiere un agente con terminal y lectura de imágenes, Python 3.11+ y las dependencias de requirements.txt. Bambu Studio y sus perfiles BBL para validar; nlm autenticado y su skill para revisión NotebookLM. Windows, macOS o Linux.
 metadata:
   author: cortins-05
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Maestro Bambu Lab A1
@@ -97,6 +97,15 @@ python "SKILL_DIR/scripts/bambu_slice.py" "<oriented_stl>" --outdir "<carpeta>/_
 
 ### 6. Entregar la configuración
 Escribe la salida con la plantilla de abajo en el chat **y** guárdala en `<carpeta>/_analisis_a1/CONFIG_A1.md` para que el usuario la tenga a mano.
+
+
+### 7. Imprimir (opcional, solo si el usuario lo pide)
+Solo si hay herramientas MCP `bambu-printer` disponibles (configuradas por el usuario con `3d-maestro printer`). Si no existen, indica `npx --yes github:cortins-05/3D-maestro printer --agent <claude-code|codex>` y termina en el paso 6.
+1. Consulta `get_printer_status`: la impresora debe estar libre y sin errores HMS; informa de temperaturas, filamento cargado y AMS.
+2. Usa el 3MF/G-code laminado de `_analisis_a1/` (no el STL crudo). Revisa con `inspect_print_file`/`resolve_3mf_ams_slots` que filamento, placa y objetos coinciden con `CONFIG_A1.md`.
+3. **Pide confirmación explícita al usuario justo antes de `start_print_job`/`print_3mf`**: es una acción física. Recuérdale placa limpia y filamento seco (Checklist). Nunca reintentes un envío dudoso sin comprobar el estado de la impresora (podría duplicarse la impresión).
+4. Tras iniciar, comprueba `get_printer_status` y, si hay cámara, `camera_snapshot` de la primera capa. `delete_printer_file`, cancelar y cambios de temperatura también requieren confirmación.
+5. Nunca muestres ni guardes en informes el código de acceso LAN, la IP ni el número de serie.
 
 ## Plantilla de salida
 
